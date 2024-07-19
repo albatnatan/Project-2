@@ -1,0 +1,344 @@
+/* איפוס סגנונות ברירת המחדל של הדפדפן */
+* {
+  box-sizing: border-box; /* הגדרת תיבת העטיפה ל-border-box כך שהרוחב והגובה יכולים להיות מוגדרים עם padding ו- border ולא יוסיפו לגודל הסופי של האלמנט */
+  margin: 0; /* אפס מרווחים */
+  padding: 0; /* אפס ריפודים */
+}
+
+body {
+  display: flex; /* תצוגת הגוף בסדרה */
+  flex-direction: column; /* סדרת תוכן בכיוון */
+  min-height: 100vh; /* גובה מינימלי של כל המסך */
+  margin: 0; /* אפס מרווחי סיומת */
+  font-family: Arial, sans-serif; /* סוג הגופן */
+  direction: ltr; /* כיוון הטקסט הממשיך */
+  background-color: #f9f9f9; /* צבע הרקע */
+  align-items: center; /* התמקדות התוכן באופן אופקי */
+}
+
+header {
+  background-color: #32383d; /* צבע הרקע של הכותרת */
+  color: #fff; /* צבע הטקסט */
+  padding: 10px 20px; /* ריפוד פנימי */
+  width: 100%; /* רוחב מלא */
+  text-align: center; /* יישור הטקסט למרכז */
+}
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("img/Contacts-595b40b75ba036ed117d5a3a.svg");
+  background-size: contain; /* Ensure the background image covers the entire background area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  z-index: -1;
+}
+
+summary {
+  cursor: pointer; /* סמן עכבור דלג על הפרט */
+  font-weight: bold; /* משקל הטקסט */
+}
+
+/* עיצוב רשימת אנשי הקשר */
+#contacts-list {
+  padding: 10px; /* ריפוד פנימי */
+  background-color: #fff; /* צבע הרקע */
+  border: 1px solid #ddd; /* גבול */
+  margin-top: 10px; /* מרווח עליון */
+}
+
+/* סגנון פריטי איש הקשר */
+.contact {
+  margin-bottom: 10px; /* מרווח מתחתי */
+  padding: 10px; /* ריפוד פנימי */
+  background-color: #f0f0f0; /* צבע הרקע */
+  border: 1px solid #ccc; /* גבול */
+  border-radius: 5px; /* פינות מעוגלות */
+  position: relative; /* עמדה יחסית */
+}
+
+.contact-info {
+  display: flex; /* תצוגה כרכיבים בסדרה */
+  align-items: center; /* יישור תוכן אופקית */
+  justify-content: space-between; /* יישור רכיבים בין */
+}
+
+.contact-name {
+  margin: 0; /* אפס מרווחים */
+  color: #000; /* צבע הטקסט */
+  cursor: pointer; /* סמן עכבור */
+  font-size: 18px; /* גודל הגופן */
+  font-weight: bold; /* משקל הטקסט */
+  flex: 1; /* אפשרות להרחיב את שם האיש קשר */
+  float: right;
+  margin-top: 2px;
+}
+
+/* סגנון לכפתור הקריאה */
+.call-button {
+  clear: both; /* איחוד עם הכיסא */
+  display: flex; /* תצוגת רכיבים בסדרה */
+  align-items: center; /* יישור תוכן אופקית */
+  justify-content: center; /* יישור רכיבים אנכי */
+  background-color: #4caf50; /* צבע רקע ירוק */
+  color: #fff; /* צבע טקסט לבן */
+  border: 0; /* אין גבול */
+  cursor: pointer; /* סמן עכבור */
+  border-radius: 3px; /* פינות מעוגלות */
+  transition: background-color 0.3s ease; /* מעבר צבע רקע בהתאם לזמן */
+  padding: 8px 16px; /* ריפוד פנימי */
+  text-align: center; /* יישור הטקסט למרכז */
+  text-decoration: none; /* אין קווים תחתונים */
+  font-size: 14px; /* גודל הגופן */
+  border: none;
+}
+
+.call-button:hover {
+  background-color: #45a049; /* ירוק כהה בעקבות הטביעה */
+}
+
+.call-button .btn-call {
+  margin-right: 5px; /* מרווח ימין לסמל */
+  background: 0; /*כפתור שקוף*/
+  border: 0; /* כפתור ללא גבולות*/
+  color: #fff;
+}
+
+/* סגנון למספר הטלפון */
+.phone-number {
+  position: absolute; /* עמדה יחסית */
+  top: 50%; /* יישור אנכי באמצע */
+  left: 50%; /* יישור אופקי באמצע */
+  transform: translate(-50%, -50%); /* הזזת מרכז */
+  padding: 5px 10px; /* ריפוד פנימי */
+  color: black; /* צבע טקסט שחור */
+  border-radius: 3px; /* פינות מעוגלות */
+  font-size: 24px; /* גודל הגופן */
+  opacity: 0; /* חצי שקיפות */
+  transition: opacity 0.3s ease; /* עבודה */
+}
+
+.call-button:hover .phone-number {
+  opacity: 1; /* הצגת פנים */
+}
+
+.contact-circle {
+  float: right; /* הזזת התמונה לימין */
+  margin-left: 10px; /* מרווח משמאל */
+}
+
+.contact-circle img {
+  width: 50px; /* רוחב התמונה */
+  height: 50px; /* גובה התמונה */
+  border-radius: 50%; /* פינות מעוגלות */
+}
+
+.contact-buttons {
+  clear: both; /* איחוד עם הכיסא */
+  margin-top: 10px; /* מרווח מעליו */
+}
+
+.contact-buttons button {
+  background-color: #4caf50; /* צבע רקע ירוק */
+  color: white; /* צבע טקסט לבן */
+  border: none; /* אין גבול */
+  padding: 8px 16px; /* ריפוד פנימי */
+  text-align: center; /* יישור הטקסט למרכז */
+  text-decoration: none; /* אין קווים תחתונים */
+  display: inline-block; /* תצוגה כבלוק */
+  font-size: 14px; /* גודל הגופן */
+  margin-right: 5px; /* מרווח ימין */
+  cursor: pointer; /* סמן עכבור */
+  border-radius: 3px; /* פינות מעוגלות */
+}
+.contact-buttons button:hover {
+  background-color: #45a049; /* ירוק כהה בעקבות הטביעה */
+}
+
+/* סגנון לתחתית */
+footer {
+  background-color: #333; /* צבע הרקע */
+  color: #fff; /* צבע הטקסט */
+  padding: 10px 20px; /* ריפוד פנימי */
+  width: 100%; /* רוחב מלא */
+  text-align: right; /* יישור הטקסט למרכז */
+  position: fixed; /* מיקום קבוע בתחתית */
+  bottom: 0; /* מיקום בתחתית */
+}
+
+/* Styling for the modal */
+/* Styling for the modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  border-radius: 3px; /* פינות מעוגלות */
+  justify-content: center;
+  align-items: center;
+}
+
+.model-Container {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 150%; /* Could be more or less, depending on screen size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: right; /* Align text to the right */
+  top: 50%; /* Position 50% from the top */
+  left: 50%; /* Position 50% from the left */
+}
+.modal-buttons {
+  display: flex;
+  justify-content: space-between; /* Ensure buttons are evenly spaced */
+  margin-top: 20px; /* Adjust spacing as needed */
+  position: relative;
+  column-gap: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Blue color, adjust as needed */
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button.close {
+  background-color: #dc3545; /* Red color for close button, adjust as needed */
+}
+
+.modal-buttons button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover, adjust as needed */
+}
+
+/* Close button in the top right corner of the modal */
+.modal-buttons button.close {
+  align-self: flex-start;
+}
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  color: #000;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #888;
+}
+
+.contact-circle-modal {
+  margin-right: 20px; /* Adjust spacing */
+}
+
+.contact-circle-modal img {
+  width: 100px; /* Adjust image size */
+  height: 100px;
+  border-radius: 50%; /* Make the image round */
+}
+
+.contact-info-modal {
+  flex: 1; /* Take remaining space */
+}
+
+.model-Container label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: center; /* Align label text to the right */
+}
+
+.model-Container input[type="text"],
+.model-Container input[type="tel"],
+.model-Container input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: right; /* Align input text to the right */
+}
+
+.model-Container button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* Center the button */
+}
+
+.model-Container button:hover {
+  background-color: #45a049;
+}
+
+.additional-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.additional-buttons button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.additional-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.additional-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+@media screen and (max-width: 430px) {
+  .phone-number {
+    margin-top: 7px;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .model-Container {
+    width: 130%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .model-Container {
+    width: 120%;
+  }
+}
