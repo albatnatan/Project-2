@@ -1,0 +1,383 @@
+/* איפוס סגנונות ברירת המחדל של הדפדפן */
+
+/* כל רכיב ישתמש ב-box-sizing: border-box */
+* {
+  box-sizing: border-box; /* הגדרת תיבת העטיפה ל-box-sizing כדי לכלול padding ו-border בגודל הסופי של הרכיב */
+  margin: 0; /* אפס מרווחי סיומת */
+  padding: 0; /* אפס ריפודים */
+}
+
+body {
+  display: flex; /* תצוגת הגוף כ- flex */
+  flex-direction: column; /* הכיוון של כל התוכן */
+  min-height: 100vh; /* גובה מינימלי של 100% מגובה התצוגה */
+  margin: 0; /* אפס מרווחי סיומת */
+  font-family: Arial, sans-serif; /* סוג הגופן */
+  direction: ltr; /* כיוון הטקסט שמאל לימין */
+  background-color: #f9f9f9; /* צבע רקע */
+  align-items: center; /* התמקדות אופקית של התוכן */
+  background-image: url("img/th.jpeg"); /* תמונת רקע */
+  background-size: 30%; /* Optional: כיסוי כל הרקע */
+  background-position: center; /* Optional: מיקום תמונת רקע במרכז */
+  background-repeat: no-repeat; /* Optional: אין חזרה של תמונת רקע */
+}
+
+header {
+  background-color: #32383d; /* צבע רקע של הכותרת */
+  color: #fff; /* צבע הטקסט */
+  padding: 10px 20px; /* ריפוד פנימי */
+  width: 100%; /* רוחב מלא */
+  text-align: center; /* יישור הטקסט למרכז */
+}
+
+#background-image {
+  position: fixed; /* עמדת הרקע הקבועה */
+  top: 0; /* למעלה */
+  left: 0; /* שמאלה */
+  width: 100%; /* רוחב מלא */
+  height: 100%; /* גובה מלא */
+  background-image: url("img/Contacts-595b40b75ba036ed117d5a3a.svg"); /* תמונת רקע */
+  background-size: contain; /* כיסוי כל האזור האחורי */
+  background-position: center; /* מיקום תמונת רקע במרכז */
+  background-repeat: no-repeat; /* אין חזרה של תמונת רקע */
+  z-index: -1; /* מיקום התמונה מאחורי הגוף */
+}
+
+summary {
+  cursor: pointer; /* סמן עכבור כדי לגשת לפרט */
+  font-weight: bold; /* משקל הטקסט */
+}
+
+/* עיצוב רשימת אנשי הקשר */
+#contacts-list {
+  padding: 10px; /* ריפוד פנימי */
+  background-color: #fff; /* צבע רקע */
+  border: 1px solid #ddd; /* גבול */
+  margin-top: 10px; /* מרווח מלמעלה */
+}
+
+/* סגנון פריטי איש הקשר */
+.contact {
+  margin-bottom: 10px; /* מרווח מתחת */
+  padding: 10px; /* ריפוד פנימי */
+  background-color: #f0f0f0; /* צבע רקע */
+  border: 1px solid #ccc; /* גבול */
+  border-radius: 5px; /* פינות מעוגלות */
+  position: relative; /* עמדה יחסית */
+}
+
+.contact-info {
+  display: flex; /* תצוגת רכיבים בסדרה */
+  align-items: center; /* יישור אופקי של תוכן */
+  justify-content: space-between; /* יישור רכיבים בין */
+}
+
+.contact-name {
+  margin: 0; /* אפס מרווחים */
+  color: #000; /* צבע טקסט */
+  cursor: pointer; /* סמן עכבור */
+  font-size: 18px; /* גודל גופן */
+  font-weight: bold; /* משקל הטקסט */
+  flex: 1; /* אפשרות להרחיב את שם האיש קשר */
+  float: right; /* צמצום */
+  margin-top: 2px;
+}
+
+/* סגנון כפתור הקריאה */
+.call-button {
+  clear: both; /* איחוד עם הכיסא */
+  display: flex; /* תצוגת רכיבים בסדרה */
+  align-items: center; /* יישור אופקי של תוכן */
+  justify-content: center; /* יישור רכיבים אנכי */
+  background-color: #4caf50; /* צבע רקע ירוק */
+  color: #fff; /* צבע טקסט לבן */
+  border: 0; /* אין גבול */
+  cursor: pointer; /* סמן עכבור */
+  border-radius: 3px; /* פינות מעוגלות */
+  transition: background-color 0.3s ease; /* מעבר צבע רקע */
+  padding: 8px 16px; /* ריפוד פנימי */
+  text-align: center; /* יישור הטקסט למרכז */
+  text-decoration: none; /* אין קווים תחתונים */
+  font-size: 14px; /* גודל גופן */
+  border: none;
+}
+
+.call-button:hover {
+  background-color: #45a049; /* צבע ירוק כהה בעקבות הטביעה */
+}
+
+.call-button .btn-call {
+  margin-right: 5px; /* מרווח ימין לסמל */
+  background: 0; /* לצבוע אפס */
+  border: 0; /* אין גבולות */
+  color: #fff;
+}
+
+/* סגנון למספר הטלפון */
+.phone-number {
+  position: absolute; /* עמדה יחסית */
+  top: 50%; /* יישור אנכי באמצע */
+  left: 50%; /* יישור אופקי באמצע */
+  transform: translate(-50%, -50%); /* הזזת מרכז */
+  padding: 5px 10px; /* ריפוד פנימי */
+  color: black; /* צבע טקסט שחור */
+  border-radius: 3px; /* פינות מעוגלות */
+  font-size: 24px; /* גודל גופן */
+  opacity: 0; /* שקיפות מיתוג */
+  transition: opacity 0.3s ease; /* עבודה */
+}
+
+.call-button:hover .phone-number {
+  opacity: 1; /* עקיפת פנים */
+}
+
+.contact-circle {
+  float: right; /* הזזת תמונה לימין */
+  margin-left: 10px; /* מרווח משמאל */
+}
+
+.contact-circle img {
+  width: 50px; /* רוחב תמונה */
+  height: 50px; /* גובה תמונה */
+  border-radius: 50%; /* פינות מעוגלות */
+}
+
+.contact-buttons {
+  clear: both; /* איחוד עם הכיסא */
+  margin-top: 10px; /* מרווח מלמעלה */
+}
+
+.contact-buttons button {
+  background-color: #4caf50; /* צבע רקע ירוק */
+  color: white; /* צבע טקסט לבן */
+  border: none; /* אין גבול */
+  padding: 8px 16px; /* ריפוד פנימי */
+  text-align: center; /* יישור הטקסט למרכז */
+  text-decoration: none; /* אין קווים תחתונים */
+  display: inline-block; /* תצוגת רכיב */
+  font-size: 14px; /* גודל גופן */
+  margin-right: 5px; /* מרווח ימין */
+  cursor: pointer; /* סמן עכבור */
+  border-radius: 3px; /* פינות מעוגלות */
+}
+
+.contact-buttons button:hover {
+  background-color: #45a049; /* צבע ירוק כהה בעקבות הטביעה */
+}
+
+/* סגנון לתחתית */
+footer {
+  background-color: #333; /* צבע רקע */
+  color: #fff; /* צבע טקסט */
+  padding: 10px 20px; /* ריפוד פנימי */
+  width: 100%; /* רוחב מלא */
+  text-align: right; /* יישור הטקסט למרכז */
+  position: fixed; /* מיקום קבוע בתחתית */
+  bottom: 0; /* מיקום בתחתית */
+}
+
+/* סגנון למודל */
+.modal {
+  display: none; /* מוסתר כברירת המחדל */
+  position: fixed; /* מצב קבוע */
+  z-index: 1000; /* מיקום עליון */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 120%;
+  overflow: auto; /* אפשרות גלילה אם נדרשת */
+  background-color: rgba(0, 0, 0, 0.4); /* שחור עם שקיפות */
+  border-radius: 3px; /* פינות מעוגלות */
+  justify-content: center; /* מיקום אנכי */
+  align-items: center; /* יישור תוכן */
+}
+
+.model-Container {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% מלמעלה ומרכז */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%; /* עובי */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: right; /* יישור הטקסט לימין */
+  top: 50%; /* מיקום אנכי של 50% מלמעלה */
+  left: 50%; /* מיקום אופקי של 50% מימין */
+}
+
+.modal-buttons {
+  display: flex; /* תצוגת רכיבים בסדרה */
+  justify-content: space-between; /* מיקום כפול */
+  margin-top: 20px; /* מרווח מעליו */
+  position: relative; /* מיקום */
+  column-gap: 20px;
+}
+
+.buttons-modal {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* כחול חזק */
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button.close {
+  background-color: #dc3545; /* אדום עבור כפתור סגירה */
+}
+
+.modal-buttons button:hover {
+  background-color: #0056b3; /* כחול כהה בעקבות הטביעה */
+}
+
+/* סגירת כפתור בפינה הימנית העליונה של המודל */
+.modal-buttons button.close {
+  align-self: flex-start;
+}
+
+.close1 {
+  position: relative;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  color: #000;
+  cursor: pointer;
+  background-color: red;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #8b1717;
+}
+
+.contact-circle-modal {
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-circle-modal img {
+  width: 100px; /* גודל התמונה */
+  height: 100px; /* גובה התמונה */
+  border-radius: 50%; /* פינות מעוגלות */
+}
+
+.contact-info-modal {
+  flex: 1; /* עקיפת מרווח הימין */
+}
+
+.model-Container label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: center; /* יישור טקסט לימין */
+}
+
+.model-Container input[type="text"],
+.model-Container input[type="tel"],
+.model-Container input[type="email"] {
+  width: 100%; /* רוחב */
+  padding: 8px; /* ריפוד פנימי */
+  margin-bottom: 10px; /* מרווח מלמטה */
+  border: 1px solid #ccc; /* גבול */
+  border-radius: 4px; /* פינות מעוגלות */
+  text-align: right; /* יישור טקסט לימין */
+}
+
+.model-Container button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* התמקדות בכפתור */
+}
+
+.model-Container button:hover {
+  background-color: #45a049;
+}
+
+.additional-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#additional-buttons {
+  position: relative; /* עמדה */
+  right: 10px; /* התאמה לערך הדרוש */
+  background-color: #f0f0f0; /* רקע */
+  padding: 10px; /* ריפוד פנימי */
+  border-radius: 5px; /* פינות מעוגלות */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* צל רך */
+  margin-bottom: 55px; /* מרווח מתחת */
+}
+
+.additional-buttons button {
+  background-color: black; /* צבע רקע שחור */
+  color: white; /* צבע טקסט לבן */
+  padding: 10px 20px; /* ריפוד פנימי */
+  border: none; /* אין גבול */
+  border-radius: 4px; /* פינות מעוגלות */
+  cursor: pointer; /* סמן עכבור */
+  margin-right: 10px; /* מרווח מימין */
+}
+
+.additional-buttons button:hover {
+  background-color: #0056b3; /* כחול כהה בעקבות הטביעה */
+}
+
+.additional-buttons button:hover {
+  background-color: #0056b3; /* כחול כהה בעקבות הטביעה */
+}
+
+.alert {
+  position: fixed; /* מיקום קבוע */
+  top: 50%; /* מיקום באמצע */
+  left: 50%; /* מיקום באמצע */
+  transform: translate(-50%, -50%); /* הזזת מרכז */
+  background-color: #f8d7da; /* צבע רקע */
+  color: #721c24; /* צבע טקסט */
+  padding: 15px; /* ריפוד פנימי */
+  border: 1px solid #f5c6cb; /* גבול */
+  border-radius: 5px; /* פינות מעוגלות */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* צל רך */
+  z-index: 9999; /* מיקום עליון */
+}
+
+@media screen and (max-width: 430px) {
+  .phone-number {
+    margin-top: 7px; /* מרווח מלמעלה */
+    font-size: 18px; /* גודל גופן */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .model-Container {
+    width: 130%; /* עובי */
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .model-Container {
+    width: 120%; /* עובי */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .model-Container {
+    width: 90%; /* עובי */
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .model-Container {
+    width: 85%; /* עובי */
+  }
+}
