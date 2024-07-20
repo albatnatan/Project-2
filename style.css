@@ -272,12 +272,6 @@ footer {
   flex: 1; /* עקיפת מרווח הימין */
 }
 
-.contact-details-modal {
-}
-
-.modal-buttons-details {
-}
-
 .model-Container label {
   display: block;
   margin-bottom: 5px;
