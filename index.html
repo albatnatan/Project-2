@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- הגדרת קידוד התווים של המסמך כ UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- הגדרת התצוגה למסכי נייד והתקן גודל העסקה -->
+    <title>ספר טלפונים</title>
+    <!-- הגדרת כותרת לעמוד -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- קישור לקובץ CSS החיצוני -->
+  </head>
+  <body>
+    <header>
+      <details open>
+        <summary>ספר טלפונים</summary>
+        <!-- הצגת כותרת בתוך אלמנט summary -->
+        <ul id="contacts-list" class="Contacts-details">
+          <!-- הגדרת רשימת UL לרשימת אנשי קשר, שתוכן יופעל באמצעות JavaScript -->
+        </ul>
+      </details>
+      <div id="background-image"></div>
+      <!-- תיבת דיב להצגת תמונת רקע -->
+    </header>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- סימן סגירה (X) למודל הקופץ -->
+        <!-- This is the 'close' icon -->
+        <div id="contact-details-container" class="model-Container">
+          <!-- Contact details will be inserted here -->
+          <!-- תיבת דיב להצגת פרטי האיש קשר, שתוכן יופעל על ידי JavaScript -->
+        </div>
+      </div>
+    </div>
+    <div id="additional-buttons" class="additional-buttons">
+      <!-- Buttons will be appended here -->
+      <!-- תיבת דיב להצגת כפתורים נוספים, שיתווספו באמצעות JavaScript -->
+    </div>
+    <footer>
+      <p>נתן אלבט ודאניה סואעד</p>
+      <!-- הגדרת רגל עמוד עם שמות היוצרים -->
+    </footer>
+
+    <script src="index.js"></script>
+    <!-- קישור לקובץ JavaScript החיצוני -->
+  </body>
+</html>
