@@ -231,7 +231,6 @@ input[type="search"] {
   width: 50vw; /* Adjust width based on viewport */
   height: 50vh; /* Adjust height based on viewport */
   max-width: 600px; /* Maximum width to avoid overflow on larger screens */
-  max-height: 90vh; /* Maximum height to avoid overflow on smaller screens */
 }
 
 /* סגנונות לתוכן הדיאלוג */
