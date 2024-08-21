@@ -440,7 +440,7 @@ footer {
   }
   .dialog {
     width: 90vw;
-    height: 100vh;
+    height: 120vh;
   }
 }
 
@@ -461,6 +461,6 @@ footer {
   }
   .dialog {
     width: 95vw;
-    height: 90vh;
+    height: 120vh;
   }
 }
