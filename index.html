@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ספר טלפונים</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- קישור לקובץ CSS חיצוני -->
+  </head>
+  <body>
+    <header>
+        <summary>ספר טלפונים</summary>
+        <!-- כותרת העמוד -->
+    </header>
+    <div id="controls-container">
+      <!-- קונטיינר המכיל את שורת החיפוש ואת הכפתורים להוספה ומחיקה של אנשי קשר -->
+      
+      <!-- קונטיינר שורת החיפוש -->
+      <div class="search-container">
+        <input type="search" id="contact-search" placeholder="חפש איש קשר..." oninput="searchContacts()" />
+        <!-- שדה חיפוש למשתמשים לחיפוש אנשי קשר -->
+      </div>
+    
+      <!-- כפתורים להוספה ומחיקת כל אנשי הקשר -->
+      <div class="button-container">
+        <button class="btn-icon add-new-contact">
+          <i class="fas fa-user-plus"></i> 
+          <!-- אייקון להוספת איש קשר -->
+        </button>
+        <button class="btn-icon delete-all-contacts">
+          <i class="fas fa-trash-alt"></i> מחק את כל אנשי הקשר
+          <!-- אייקון למחיקת כל אנשי הקשר -->
+        </button>
+      </div>
+    </div>
+    
+    <ul id="contacts-list" class="Contacts-details">
+      <!-- הגדרת רשימת UL עבור אנשי קשר, שהתוכן שלה יופעל באמצעות JavaScript -->
+    </ul>
+    
+    <div id="myModal" class="modal">
+      <div class="modal-content"> 
+        <div id="contact-details-container" class="model-Container">
+          <!-- תיבת דיב להצגת פרטי איש הקשר, שהתוכן שלה יופעל על ידי JavaScript -->
+        </div>
+      </div>
+    </div>
+    
+    <div id="additional-buttons" class="additional-buttons">
+      <!-- תיבת דיב להצגת כפתורים נוספים, שיתווספו באמצעות JavaScript -->
+    </div>
+    
+    <!-- תבנית דיאלוג -->
+    <div id="contactDialog" class="dialog">
+      <div class="dialog-content">
+        <div class="dialog-body"></div>
+        <!-- תוכן הדיאלוג יוצג כאן -->
+      </div>
+    </div>
+    
+    <footer>
+      <p>נתן אלבט ודאניה סואעד</p>
+      <!-- רגל עמוד המציגה את שמות היוצרים -->
+    </footer>
+
+    <script src="index.js"></script>
+    <!-- קישור לקובץ JavaScript חיצוני -->
+  </body>
+</html>
