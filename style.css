@@ -400,7 +400,7 @@ footer {
   }
   .dialog {
     width: 85vw;
-    height: 70vh;
+    height: 100vh;
   }
 }
 @media screen and (max-width: 540px) {
@@ -419,7 +419,7 @@ footer {
   }
   .dialog {
     width: 80vw;
-    height: 60vh;
+    height: 150vh;
   }
 }
 
@@ -440,7 +440,7 @@ footer {
   }
   .dialog {
     width: 90vw;
-    height: 120vh;
+    height: 150vh;
   }
 }
 
@@ -461,6 +461,6 @@ footer {
   }
   .dialog {
     width: 95vw;
-    height: 120vh;
+    height: 150vh;
   }
 }
