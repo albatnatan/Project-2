@@ -222,34 +222,38 @@ input[type="search"] {
 
 /* סגנונות לחלון הדיאלוג */
 .dialog {
-  display: none; /* מוסתר כברירת מחדל */
-  z-index: 1; /* מיקום מעל שאר האלמנטים */
-  position: fixed; /* מיקום קבוע */
-  width: 50%; /* רוחב */
-  height: 50%; /* גובה מלא */
-  direction: rtl; /* כיוון טקסט מימין לשמאל */
-  align-items: center; /* מיקום מרכזי אנכי */
-  justify-content: center; /* מיקום מרכזי אופקי */
+  display: none;
+  z-index: 1;
+  position: fixed;
+  direction: rtl;
+  align-items: center;
+  justify-content: center;
+  width: 50vw; /* Adjust width based on viewport */
+  height: 50vh; /* Adjust height based on viewport */
+  max-width: 600px; /* Maximum width to avoid overflow on larger screens */
+  max-height: 90vh; /* Maximum height to avoid overflow on smaller screens */
 }
 
 /* סגנונות לתוכן הדיאלוג */
 .dialog-content {
-  background-color: #fefefe; /* רקע לבן */
-  margin: 15% auto; /* מיקום מרכזי אופקי */
-  padding: 20px; /* ריווח פנימי */
-  border: 1px solid #888; /* גבול */
-  width: 80%; /* רוחב */
-  height: 100%;
-  max-width: 600px; /* רוחב מקסימלי */
-  border-radius: 5px; /* פינות מעוגלות */
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Full width of the dialog */
+  height: 100%; /* Full height of the dialog */
+  border-radius: 5px;
+  display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Space out content to fit */
 }
 
 .contact-dialog-form {
-  display: flex;            /* שימוש בפריסת Flexbox */
-  flex-direction: column;   /* סידור אלמנטים בעמודה */
-  gap: 10px;                /* מרווח בין אלמנטים בטופס */
-  width: 100%;              /* התאמת הטופס לרוחב המלא של הקונטיינר */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  flex-grow: 1; /* Allow form to take available space */
 }
 
 .modal-buttons {
@@ -352,8 +356,8 @@ footer {
     font-size: 12px;
   }
   .dialog {
-    width: 80vw; /* רוחב מותאם לטאבלטים */
-    height: 45vh; /* גובה מותאם לטאבלטים */
+    width: 80vw;
+    height: 60vh;
   }
 }
 @media screen and (max-width: 1024px){
@@ -395,8 +399,8 @@ footer {
     font-size: 14px;
   }
   .dialog {
-    width: 85vw; /* רוחב מותאם לטאבלטים קטנים וטלפונים גדולים */
-    height: 50vh; /* גובה מותאם לטאבלטים קטנים וטלפונים גדולים */
+    width: 85vw;
+    height: 70vh;
   }
 }
 @media screen and (max-width: 540px) {
@@ -414,8 +418,8 @@ footer {
     font-size: 12px;
   }
   .dialog {
-    width: 80vw; /* רוחב מותאם לטאבלטים */
-    height: 70vh; /* גובה מותאם לטאבלטים */
+    width: 80vw;
+    height: 60vh;
   }
 }
 
@@ -435,8 +439,8 @@ footer {
     font-size: 12px;
   }
   .dialog {
-    width: 90vw; /* רוחב מותאם לסמארטפונים */
-    height: 55vh; /* גובה מותאם לסמארטפונים */
+    width: 90vw;
+    height: 100vh;
   }
 }
 
@@ -456,7 +460,7 @@ footer {
     font-size: 12px;
   }
   .dialog {
-    width: 95vw; /* כמעט רוחב מלא על מסכים קטנים מאוד */
-    height: 55vh; /* כמעט גובה מלא על מסכים קטנים מאוד */
+    width: 95vw;
+    height: 90vh;
   }
 }
