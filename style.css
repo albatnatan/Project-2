@@ -1,0 +1,462 @@
+/* איפוס סגנונות ברירת המחדל של הדפדפן */
+* {
+  box-sizing: border-box; /* הגדרת מודל הקופסה לכל האלמנטים כ-border-box */
+  margin: 0; /* הסרת שוליים ברירת מחדל */
+  padding: 0; /* הסרת ריווח ברירת מחדל */
+}
+
+/* סגנונות כלליים לגוף העמוד */
+body {
+  display: flex; /* הצגת גוף העמוד כ-flex */
+  flex-direction: column; /* סידור תוכן בעמודה */
+  min-height: 100vh; /* גובה מלא של חלון הצפייה */
+  margin: 0; /* הסרת שוליים */
+  font-family: Arial, sans-serif; /* קביעת פונט ברירת מחדל */
+  direction: ltr; /* כיוון טקסט משמאל לימין */
+  background-color: #f9f9f9; /* צבע רקע */
+  align-items: center; /* מיקום תוכן במרכז */
+}
+
+/* סגנונות לכותרת */
+header {
+  background-color: #32383d; /* צבע רקע כהה */
+  color: #fff; /* צבע טקסט לבן */
+  padding: 10px 20px; /* ריווח פנימי */
+  width: 100%; /* רוחב מלא */
+  text-align: center; /* מיקום טקסט במרכז */
+  font-size: 50px; /* גודל פונט גדול */
+}
+
+/* סגנונות למיכל הראשי */
+.container {
+  margin: auto; /* מיקום המיכל במרכז */
+  overflow: auto; /* ניקוי צפים */
+  padding: 1rem; /* ריווח פנימי */
+  display: flex; /* הצגת מיכל כ-flex */
+  flex-direction: column; /* סידור תוכן בעמודה */
+  justify-content: space-between; /* מרווח בין פריטים */
+  align-items: center; /* מיקום פריטים במרכז */
+  background-color: white; /* צבע רקע לבן */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* אפקט צל */
+}
+
+/* סגנונות למיכל החיפוש */
+.search-container {
+  margin: 10px; /* שוליים */
+  max-width: 300px; /* רוחב מקסימלי */
+  justify-content: center; /* מיקום במרכז */
+  align-items: center; /* מיקום במרכז */
+  position: relative; /* מיקום יחסי */
+  display: inline-block; /* הצגת מיכל כ-inline-block */
+}
+
+/* סגנונות לשדה החיפוש */
+input[type="search"] {
+  width: 100%; /* רוחב מלא */
+  padding: 10px; /* ריווח פנימי */
+  font-size: 16px; /* גודל פונט */
+  border: 1px solid #ccc; /* גבול */
+  border-radius: 4px; /* פינות מעוגלות */
+  box-sizing: border-box; /* מודל קופסה כ-border-box */
+}
+
+/* סגנונות לפס העליון */
+.top-bar {
+  width: 100%; /* רוחב מלא */
+  justify-content: space-between; /* מרווח בין הכפתורים */
+  align-items: center; /* מיקום פריטים במרכז */
+  padding: 0.5rem; /* ריווח פנימי */
+  display: flex; /* הצגת פס העליון כ-flex */
+}
+
+/* סגנונות לרשימת אנשי הקשר */
+#contacts-list {
+  padding: 10px; /* ריווח פנימי */
+  background-color: #fff; /* צבע רקע */
+  border: 1px solid #ddd; /* גבול */
+  margin-top: 10px; /* שוליים עליונים */
+  list-style-type: none; /* הסרת נקודות */
+  width: 1100px; /* רוחב קבוע */
+}
+
+/* סגנונות לכל איש קשר ברשימה */
+.contact {
+  position: relative; /* מיקום יחסי */
+  margin-bottom: 10px; /* שוליים תחתונים */
+  padding: 10px; /* ריווח פנימי */
+  background-color: #f0f0f0; /* צבע רקע */
+  border: 1px solid #ccc; /* גבול */
+  border-radius: 5px; /* פינות מעוגלות */
+  width: 100%; /* רוחב מלא */
+  height: 130px; /* גובה קבוע */
+}
+
+/* סגנונות לפרטי איש הקשר */
+.contact-info {
+  position: absolute; /* מיקום מוחלט */
+  top: 10px; /* מיקום מלמעלה */
+  right: 10px; /* מיקום מימין */
+  display: flex; /* הצגת פרטי איש הקשר כ-flex */
+  align-items: center; /* מיקום פריטים במרכז */
+}
+
+/* סגנונות לשם של איש הקשר */
+.contact-name {
+  margin: 0; /* הסרת שוליים */
+  color: #000; /* צבע טקסט */
+  cursor: pointer; /* סמן מצביע */
+  font-size: 18px; /* גודל פונט */
+  font-weight: bold; /* טקסט מודגש */
+  flex: 1; /* שטח גמיש */
+  float: right; /* צף לימין */
+  margin-top: 2px; /* שוליים עליונים */
+}
+
+/* סגנונות למספר הטלפון */
+.phone-number {
+  position: absolute; /* מיקום מוחלט */
+  bottom: 10px; /* מיקום מלמטה */
+  left: 50%; /* מיקום מרכזי אופקי */
+  transform: translateX(-50%); /* מיקום מרכזי אופקי */
+  padding: 5px 10px; /* ריווח פנימי */
+  color: black; /* צבע טקסט */
+  background-color: white; /* צבע רקע */
+  border-radius: 3px; /* פינות מעוגלות */
+  font-size: 18px; /* גודל פונט */
+  opacity: 0; /* מוסתר כברירת מחדל */
+  visibility: hidden; /* מוסתר כברירת מחדל */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* מעבר חלק */
+}
+
+/* סגנונות לתמונת איש קשר עגולה */
+.contact-circle {
+  float: right; /* צף לימין */
+  margin-left: 10px; /* שוליים שמאליים */
+}
+
+/* סגנונות לתמונות עגולות */
+.contact-circle img,
+.contact-info-dialog .contact-img {
+  width: 100px; /* רוחב */
+  height: 100px; /* גובה */
+  border-radius: 50%; /* גבול עגול */
+  object-fit: cover; /* התאמת תמונה לגודל הקונטיינר */
+  margin-bottom: 10px; /* שוליים תחתונים */
+}
+
+/* סגנונות לכפתור בעת מעבר עכבר */
+.btn-call:hover + .phone-number {
+  opacity: 1; /* הצגת מספר הטלפון בעת מעבר עכבר */
+  visibility: visible; /* הצגת מספר הטלפון בעת מעבר עכבר */
+}
+
+.btn-icon {
+  background-color: transparent; /* רקע שקוף */
+  color: #333; /* צבע אייקון כהה */
+  border: none; /* ללא גבול */
+  padding: 10px; /* ריווח פנימי */
+  font-size: 20px; /* גודל פונט */
+  cursor: pointer; /* סמן מצביע */
+  border-radius: 5px; /* פינות מעוגלות */
+  transition: color 0.3s, background-color 0.3s, transform 0.3s; /* מעבר חלק */
+}
+
+.btn-icon:hover {
+  color: #007bff; /* צבע כחול בעת מעבר עכבר */
+  background-color: rgba(0, 123, 255, 0.1); /* רקע כחול בהיר בעת מעבר עכבר */
+  transform: scale(1.1); /* הגדלה קלה של הכפתור בעת מעבר עכבר */
+}
+
+/* סגנונות ספציפיים לאייקוני כפתורים */
+.add-new-contact {
+  color: #007bff; /* צבע כחול */
+}
+
+.delete-all-contacts {
+  color: #dc3545; /* צבע אדום */
+}
+
+.btn-delete {
+  color: #dc3545; /* צבע אדום */
+}
+
+.btn-update {
+  color: #ffc107; /* צבע צהוב */
+}
+
+.btn-details {
+  color: #17a2b8; /* צבע טורקיז */
+}
+
+.contact-info-dialog {
+  display: flex;
+  flex-direction: column; /* סידור פריטים בעמודה */
+  align-items: center; /* מיקום כל הפריטים אופקית במרכז */
+}
+
+.contact-info-header {
+  display: flex;
+  flex-direction: column; /* סידור תמונה ושם בצורה אנכית */
+  align-items: center; /* מיקום תמונה ושם במרכז */
+  margin-bottom: 20px; /* ריווח בין הכותרת לפרטים */
+}
+
+.contact-img {
+  width: 150px; /* רוחב התמונה */
+  height: 150px; /* גובה התמונה */
+  border-radius: 50%; /* תמונה עגולה */
+  object-fit: cover; /* התאמת התמונה לגודל הקונטיינר */
+  margin-bottom: 10px; /* ריווח בין התמונה לשם */
+}
+
+.contact-info-details {
+  display: flex;
+  flex-direction: column; /* סידור פרטים אנכית */
+  align-items: center; /* מיקום הפרטים במרכז אופקית */
+  text-align: center; /* מיקום הטקסט במרכז בתוך הפרטים */
+}
+
+.contact-info-details p {
+  margin: 5px 0; /* ריווח בין פרטים */
+}
+
+/* סגנונות לחלון הדיאלוג */
+.dialog {
+  display: none; /* מוסתר כברירת מחדל */
+  z-index: 1; /* מיקום מעל שאר האלמנטים */
+  position: fixed; /* מיקום קבוע */
+  width: 50%; /* רוחב */
+  height: 50%; /* גובה מלא */
+  direction: rtl; /* כיוון טקסט מימין לשמאל */
+  align-items: center; /* מיקום מרכזי אנכי */
+  justify-content: center; /* מיקום מרכזי אופקי */
+}
+
+/* סגנונות לתוכן הדיאלוג */
+.dialog-content {
+  background-color: #fefefe; /* רקע לבן */
+  margin: 15% auto; /* מיקום מרכזי אופקי */
+  padding: 20px; /* ריווח פנימי */
+  border: 1px solid #888; /* גבול */
+  width: 80%; /* רוחב */
+  height: 100%;
+  max-width: 600px; /* רוחב מקסימלי */
+  border-radius: 5px; /* פינות מעוגלות */
+  flex-direction: column;
+}
+
+.contact-dialog-form {
+  display: flex;            /* שימוש בפריסת Flexbox */
+  flex-direction: column;   /* סידור אלמנטים בעמודה */
+  gap: 10px;                /* מרווח בין אלמנטים בטופס */
+  width: 100%;              /* התאמת הטופס לרוחב המלא של הקונטיינר */
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* סגנונות לכפתור סגירת הדיאלוג */
+.close-dialog {
+  color: #aaa; /* צבע אפור בהיר */
+  float: right; /* מיקום ימני */
+  font-size: 28px; /* גודל פונט */
+  font-weight: bold; /* טקסט מודגש */
+}
+
+.close-dialog:hover,
+.close-dialog:focus {
+  color: black; /* צבע כהה בעת מעבר עכבר */
+  text-decoration: none; /* הסרת קו תחתון */
+  cursor: pointer; /* סמן מצביע */
+}
+
+/* סגנונות לטופס חלון הדיאלוג */
+.contact-dialog-form {
+  display: flex; /* הצגת טופס כ-flex */
+  flex-direction: column; /* סידור תוכן בעמודה */
+  gap: 10px; /* מרווח בין אלמנטים בטופס */
+}
+
+/* סגנונות לתוויות */
+.contact-dialog-form label {
+  font-weight: bold; /* טקסט מודגש */
+  margin-bottom: 5px; /* שוליים תחתונים */
+}
+
+/* סגנונות לשדות הקלט */
+.contact-dialog-form input {
+  padding: 8px;             /* ריווח פנימי בתוך שדות הקלט */
+  font-size: 16px;          /* גודל פונט לשדות הקלט */
+  border: 1px solid #ccc;   /* גבול בהיר סביב שדות הקלט */
+  border-radius: 4px;       /* פינות מעוגלות לשדות הקלט */
+  box-sizing: border-box;   /* הבטחת הכללת ריווח ברוחב */
+}
+
+/* סגנונות למיכל כפתורי החלון */
+.modal-buttons {
+  display: flex; /* הצגת כפתורים כ-flex */
+  justify-content: flex-end; /* מיקום כפתורים בקצה */
+  gap: 10px; /* מרווח בין כפתורים */
+  margin-top: 10px; /* שוליים עליונים */
+}
+
+/* סגנונות לכפתורי החלון */
+.modal-buttons button {
+  padding: 8px 16px; /* ריווח פנימי */
+  font-size: 16px; /* גודל פונט */
+  border: none; /* ללא גבול */
+  border-radius: 4px; /* פינות מעוגלות */
+  cursor: pointer; /* סמן מצביע */
+}
+
+/* סגנונות לכפתור הסגירה */
+.modal-buttons .close-dialog {
+  background-color: #f44336; /* צבע רקע אדום */
+  color: white; /* צבע טקסט לבן */
+}
+
+/* סגנונות לכפתור השמירה */
+.modal-buttons button:not(.close-dialog) {
+  background-color: #4CAF50; /* צבע רקע ירוק */
+  color: white; /* צבע טקסט לבן */
+}
+
+/* סגנונות לרגל העמוד */
+footer {
+  background-color: #333; /* צבע רקע כהה */
+  color: #fff; /* צבע טקסט לבן */
+  padding: 10px 20px; /* ריווח פנימי */
+  width: 100%; /* רוחב מלא */
+  text-align: right; /* מיקום טקסט מימין */
+  position: fixed; /* מיקום קבוע */
+  bottom: 0; /* מיקום בתחתית העמוד */
+}
+
+/* סגנונות רספונסיביים למסכים ברוחב מקסימלי של 1024px */
+@media screen and (max-width: 1024px) {
+  .phone-number {
+    margin-top: 7px;
+    font-size: 18px;
+  }
+  #contacts-list {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .contact-name {
+    font-size: 12px;
+  }
+  .dialog {
+    width: 80vw; /* רוחב מותאם לטאבלטים */
+    height: 45vh; /* גובה מותאם לטאבלטים */
+  }
+}
+@media screen and (max-width: 1024px){
+  @media screen and (max-height: 600px){
+    .phone-number {
+      margin-top: 7px;
+      font-size: 18px;
+    }
+    #contacts-list {
+      width: 100%;
+    }
+    .container {
+      width: 100%;
+    }
+    .contact-name {
+      font-size: 12px;
+    }
+    .dialog {
+      width: 80vw; /* רוחב מותאם לטאבלטים */
+      height: 90vh; /* גובה מותאם לטאבלטים */
+    }
+  }
+}
+
+
+/* סגנונות רספונסיביים למסכים ברוחב מקסימלי של 768px */
+@media screen and (max-width: 768px) {
+  .phone-number {
+    margin-top: 7px;
+    font-size: 16px;
+  }
+  #contacts-list {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .contact-name {
+    font-size: 14px;
+  }
+  .dialog {
+    width: 85vw; /* רוחב מותאם לטאבלטים קטנים וטלפונים גדולים */
+    height: 50vh; /* גובה מותאם לטאבלטים קטנים וטלפונים גדולים */
+  }
+}
+@media screen and (max-width: 540px) {
+  .phone-number {
+    margin-top: 7px;
+    font-size: 18px;
+  }
+  #contacts-list {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .contact-name {
+    font-size: 12px;
+  }
+  .dialog {
+    width: 80vw; /* רוחב מותאם לטאבלטים */
+    height: 70vh; /* גובה מותאם לטאבלטים */
+  }
+}
+
+/* סגנונות רספונסיביים למסכים ברוחב מקסימלי של 480px */
+@media screen and (max-width: 480px) {
+  .phone-number {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+  #contacts-list {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .contact-name {
+    font-size: 12px;
+  }
+  .dialog {
+    width: 90vw; /* רוחב מותאם לסמארטפונים */
+    height: 55vh; /* גובה מותאם לסמארטפונים */
+  }
+}
+
+/* סגנונות רספונסיביים למסכים ברוחב מקסימלי של 360px */
+@media screen and (max-width: 360px) {
+  .phone-number {
+    margin-top: 7px;
+    font-size: 12px;
+  }
+  #contacts-list {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .contact-name {
+    font-size: 12px;
+  }
+  .dialog {
+    width: 95vw; /* כמעט רוחב מלא על מסכים קטנים מאוד */
+    height: 55vh; /* כמעט גובה מלא על מסכים קטנים מאוד */
+  }
+}
