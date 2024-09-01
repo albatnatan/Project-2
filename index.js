@@ -1,27 +1,27 @@
 let contacts = [
   {
-    name: "נתן אלבט",
+    name: "נתן",
     number: "0546789465",
     email: "eyalbat@gmail.com",
     address: "ישפייה",
     img: "img/natan.jpg",
   },
   {
-    name: "דאניה סואעד",
+    name: "דאניה",
     number: "054643465",
     email: "daniaswaeed@gmail.com",
     address: "ישפייה",
     img: "img/dania.png",
   },
   {
-    name: "לאנה נבואני",
+    name: "לאנה",
     number: "0546123465",
     email: "lana@gmail.com",
     address: "ישפייה",
     img: "img/lana.png",
   },
   {
-    name: "מירנה סעב",
+    name: "מירנה",
     number: "123456678",
     email: "mirna@gmail.com",
     address: "ישפייה",
@@ -61,7 +61,7 @@ function validateNumber(number) {
 }
 
 // פונקציה להוספת איש קשר עם אימות נתונים
-function addContact(contact) {
+function addContact(contact, prepend = false) {
   console.log("Adding contact:", contact);
   const list = document.getElementById("contacts-list");
 
@@ -93,15 +93,21 @@ function addContact(contact) {
       <span class="phone-number">${contact.number}</span>
     </div>
   `;
-  list.insertBefore(li, list.firstChild);
 
-  // Update the contact count after adding
+  if (prepend) {
+    list.prepend(li); // Add the contact at the beginning of the list
+  } else {
+    list.appendChild(li); // Add the contact at the end of the list
+  }
+
   updateContactCount();
 }
 // פונקציה לאכלוס ראשוני של רשימת אנשי הקשר
+
 function populateContacts() {
+  sortContactsAsc(); // Ensure contacts are sorted before displaying
+
   const list = document.getElementById("contacts-list");
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
   list.innerHTML = "";
 
   contacts.forEach((contact) => addContact(contact));
@@ -111,7 +117,14 @@ function populateContacts() {
 }
 
 // Initial population of contacts
+
 populateContacts();
+
+function sortContactsAsc() {
+  contacts.sort((a, b) => {
+    return a.name.localeCompare(b.name, "he"); // Sort in ascending order (A to Z)
+  });
+}
 
 // פונקציה לעריכת פרטי איש קשר
 function editContact(number) {
@@ -231,12 +244,12 @@ document.addEventListener("DOMContentLoaded", updateContactCount);
 
 // פונקציה לעדכון ממשק המשתמש עם רשימת אנשי הקשר הנוכחית
 function updateUI() {
+  sortContactsAsc(); // Sort contacts before updating UI
+
   const list = document.getElementById("contacts-list");
   list.innerHTML = "";
 
-  contacts.forEach((contact) => {
-    addContact(contact);
-  });
+  contacts.forEach((contact) => addContact(contact));
 
   // Update the contact count after updating the UI
   updateContactCount();
@@ -310,7 +323,10 @@ function saveNewContact() {
     img: inputImg || defaultImg,
   };
   contacts.push(newContact); // Add the new contact to the list
-  addContact(newContact); // Add the new contact to the DOM
+
+  // Re-sort the contacts and then add the new contact at the top of the list
+  sortContactsAsc();
+  addContact(newContact, true);
 
   closeDialog(); // Close the dialog
 }
