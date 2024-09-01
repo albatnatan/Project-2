@@ -1,4 +1,3 @@
-
 let contacts = [
   {
     name: "נתן אלבט",
@@ -63,11 +62,11 @@ function validateNumber(number) {
 
 // פונקציה להוספת איש קשר עם אימות נתונים
 function addContact(contact) {
-  console.log('Adding contact:', contact); // Debugging output
+  console.log("Adding contact:", contact);
   const list = document.getElementById("contacts-list");
 
-  let li = document.createElement("li"); // יצירת אלמנט <li> חדש
-  li.classList.add("contact"); // הוספת מחלקה "contact" ל-li
+  let li = document.createElement("li");
+  li.classList.add("contact");
 
   li.innerHTML = `
     <div class="Photo-Name">
@@ -94,23 +93,25 @@ function addContact(contact) {
       <span class="phone-number">${contact.number}</span>
     </div>
   `;
-  list.insertBefore(li, list.firstChild);; // הוספת ה-li לרשימת אנשי הקשר ב-DOM
-}
+  list.insertBefore(li, list.firstChild);
 
+  // Update the contact count after adding
+  updateContactCount();
+}
 // פונקציה לאכלוס ראשוני של רשימת אנשי הקשר
 function populateContacts() {
-  const list = document.getElementById("contacts-list"); // Select the contacts list in the DOM
-
-  // Sort the contacts array by name in ascending order
+  const list = document.getElementById("contacts-list");
   contacts.sort((a, b) => a.name.localeCompare(b.name));
+  list.innerHTML = "";
 
-  // Add each contact to the DOM
   contacts.forEach((contact) => addContact(contact));
+
+  // Update the contact count after populating
+  updateContactCount();
 }
 
 // Initial population of contacts
 populateContacts();
-
 
 // פונקציה לעריכת פרטי איש קשר
 function editContact(number) {
@@ -136,7 +137,7 @@ function editContact(number) {
       </div>
     </div>
   `;
-  
+
   showDialog(content); // הצגת דיאלוג עם תוכן העריכה
 }
 
@@ -145,7 +146,7 @@ function showContactInfo(number) {
   const contact = contacts.find((c) => c.number === number); // מציאת איש הקשר לפי מספר הטלפון
 
   if (!contact) {
-    console.error('Contact not found:', number); // הצגת הודעת שגיאה אם איש הקשר לא נמצא
+    console.error("Contact not found:", number); // הצגת הודעת שגיאה אם איש הקשר לא נמצא
     return;
   }
 
@@ -165,7 +166,7 @@ function showContactInfo(number) {
       </div>
     </div>
   `;
-  
+
   showDialog(content); // הצגת דיאלוג עם פרטי איש הקשר
 }
 
@@ -213,26 +214,32 @@ function saveContact(number) {
 function deleteContact(number) {
   const contact = contacts.find((c) => c.number === number);
   if (contact) {
-      const confirmDelete = confirm(`Are you sure you want to delete the contact "${contact.name}"?`);
-      if (confirmDelete) {
-          contacts = contacts.filter((c) => c.number !== number); // Filter out the contact
-          updateUI(); // Update the UI to reflect changes
-      }
+    const confirmDelete = confirm(
+      `Are you sure you want to delete the contact "${contact.name}"?`
+    );
+    if (confirmDelete) {
+      contacts = contacts.filter((c) => c.number !== number);
+      updateUI();
+    }
   } else {
-      console.error('Contact not found:', number);
+    console.error("Contact not found:", number);
   }
 }
 
+// Ensure the contact count is correct on initial load
+document.addEventListener("DOMContentLoaded", updateContactCount);
 
 // פונקציה לעדכון ממשק המשתמש עם רשימת אנשי הקשר הנוכחית
 function updateUI() {
-  const list = document.getElementById("contacts-list"); // בחירת רשימת אנשי הקשר ב-DOM
-  list.innerHTML = ""; // ניקוי התוכן הנוכחי של רשימת אנשי הקשר
+  const list = document.getElementById("contacts-list");
+  list.innerHTML = "";
 
-  // הוספת כל איש קשר לרשימה
   contacts.forEach((contact) => {
-    addContact(contact); // הוספת איש הקשר ל-DOM
+    addContact(contact);
   });
+
+  // Update the contact count after updating the UI
+  updateContactCount();
 }
 // פונקציה להוספת איש קשר חדש
 function addNewContact() {
@@ -254,65 +261,75 @@ function addNewContact() {
       </div>
     </div>
   `;
-  
+
   showDialog(content); // הצגת דיאלוג עם טופס הוספת איש קשר חדש
 }
 
 // פונקציה לשמירת איש קשר חדש
 function saveNewContact() {
-  const inputName = document.getElementById("input-name").value.trim(); 
-  const inputNumber = document.getElementById("input-number").value.trim(); 
-  const inputEmail = document.getElementById("input-email").value.trim(); 
-  const inputAddress = document.getElementById("input-address").value.trim(); 
-  const inputImg = document.getElementById("input-img").value.trim(); 
+  const inputName = document.getElementById("input-name").value.trim();
+  const inputNumber = document.getElementById("input-number").value.trim();
+  const inputEmail = document.getElementById("input-email").value.trim();
+  const inputAddress = document.getElementById("input-address").value.trim();
+  const inputImg = document.getElementById("input-img").value.trim();
 
   // Input validation
   if (!validateName(inputName)) {
-      alert("שם לא תקין. יש להזין רק אותיות ורווחים.");
-      return;
+    alert("שם לא תקין. יש להזין רק אותיות ורווחים.");
+    return;
   }
   if (!validateNumber(inputNumber)) {
-      alert("מספר טלפון לא תקין. יש להזין רק מספרים.");
-      return;
+    alert("מספר טלפון לא תקין. יש להזין רק מספרים.");
+    return;
   }
   if (!validateEmail(inputEmail)) {
-      alert("אימייל לא תקין. יש להזין אימייל תקני.");
-      return;
+    alert("אימייל לא תקין. יש להזין אימייל תקני.");
+    return;
   }
   if (!validateAddress(inputAddress)) {
-      alert("כתובת לא תקינה. יש להזין רק אותיות, רווחים ותווים בעברית.");
-      return;
+    alert("כתובת לא תקינה. יש להזין רק אותיות, רווחים ותווים בעברית.");
+    return;
   }
 
   // Check if contact name already exists
-  const existingContact = contacts.find(contact => contact.name === inputName);
+  const existingContact = contacts.find(
+    (contact) => contact.name === inputName
+  );
   if (existingContact) {
-      alert(`איש קשר בשם "${inputName}" כבר קיים.`);
-      return; // Stop the function if a duplicate is found
+    alert(`איש קשר בשם "${inputName}" כבר קיים.`);
+    return; // Stop the function if a duplicate is found
   }
 
   // Create a new contact
   const defaultImg = "img/OIP.jpeg";
   const newContact = {
-      name: inputName,
-      number: inputNumber,
-      email: inputEmail,
-      address: inputAddress,
-      img: inputImg || defaultImg,
+    name: inputName,
+    number: inputNumber,
+    email: inputEmail,
+    address: inputAddress,
+    img: inputImg || defaultImg,
   };
   contacts.push(newContact); // Add the new contact to the list
   addContact(newContact); // Add the new contact to the DOM
 
   closeDialog(); // Close the dialog
 }
+function updateContactCount() {
+  const count = contacts.length;
+  document.getElementById("contact-count-number").textContent = count;
+}
 
 // פונקציה לחיפוש וסינון אנשי קשר
 function searchContacts() {
-  const searchInput = document.getElementById("contact-search").value.toLowerCase(); // קבלת ערך חיפוש מהקלט והמרתו לאותיות קטנות
+  const searchInput = document
+    .getElementById("contact-search")
+    .value.toLowerCase(); // קבלת ערך חיפוש מהקלט והמרתו לאותיות קטנות
   const contactItems = document.querySelectorAll("#contacts-list .contact"); // בחירת כל פרטי אנשי הקשר ברשימה
 
   contactItems.forEach((item) => {
-    const contactName = item.querySelector(".contact-name").textContent.toLowerCase(); // קבלת שם איש הקשר והמרתו לאותיות קטנות
+    const contactName = item
+      .querySelector(".contact-name")
+      .textContent.toLowerCase(); // קבלת שם איש הקשר והמרתו לאותיות קטנות
     if (contactName.includes(searchInput)) {
       item.style.display = ""; // הצגת איש הקשר אם הוא תואם לחיפוש
     } else {
@@ -323,7 +340,8 @@ function searchContacts() {
 
 // פונקציה למחיקת כל אנשי הקשר
 function deleteAllContacts() {
-  if (confirm("האם אתה בטוח שברצונך למחוק את כל אנשי הקשר?")) { // אישור למחוק את כל אנשי הקשר
+  if (confirm("האם אתה בטוח שברצונך למחוק את כל אנשי הקשר?")) {
+    // אישור למחוק את כל אנשי הקשר
     contacts = []; // ניקוי רשימת אנשי הקשר
     updateUI(); // עדכון ממשק המשתמש
   }
@@ -340,15 +358,20 @@ function closeDialog() {
   dialog.style.display = "none"; // Hide the dialog
 }
 // קישור מאזיני אירועים להוספת איש קשר חדש ולמחיקת כל אנשי הקשר
-document.querySelector(".add-new-contact").addEventListener("click", addNewContact);
-document.querySelector(".delete-all-contacts").addEventListener("click", deleteAllContacts);
+document
+  .querySelector(".add-new-contact")
+  .addEventListener("click", addNewContact);
+document
+  .querySelector(".delete-all-contacts")
+  .addEventListener("click", deleteAllContacts);
 
 // מאזין לאירועים לסגירת הדיאלוג אם לוחצים מחוץ לו
 window.addEventListener("click", (event) => {
   const modal = document.getElementById("dialog");
-  if (event.target === modal || event.target.classList.contains("close-dialog")) {
+  if (
+    event.target === modal ||
+    event.target.classList.contains("close-dialog")
+  ) {
     closeDialog(); // סגירת הדיאלוג
   }
 });
-
-  
