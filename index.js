@@ -257,17 +257,26 @@ function deleteContact(number) {
 document.addEventListener('DOMContentLoaded', updateContactCount);
 
 // פונקציה לעדכון ממשק המשתמש עם רשימת אנשי הקשר הנוכחית
+// פונקציה לעדכון ממשק המשתמש עם רשימת אנשי הקשר הנוכחית
 function updateUI() {
   sortContactsAsc(); // Sort contacts before updating UI
 
   const list = document.getElementById('contacts-list');
-  list.innerHTML = '';
+  const noContactsMessage = document.getElementById('no-contacts-message');
+  
+  list.innerHTML = ''; // Clear existing contacts
 
-  contacts.forEach(contact => addContact(contact));
+  if (contacts.length === 0) {
+    noContactsMessage.style.display = 'block'; // Show no contacts message
+  } else {
+    noContactsMessage.style.display = 'none'; // Hide no contacts message
+    contacts.forEach(contact => addContact(contact));
+  }
 
   // Update the contact count after updating the UI
   updateContactCount();
 }
+
 // פונקציה להוספת איש קשר חדש
 function addNewContact() {
   const content = `
