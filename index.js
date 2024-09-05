@@ -222,6 +222,11 @@ function saveContact(number) {
     return;
   }
 
+  const existingContact = contacts.find(contact => contact.name === inputName);
+  if (existingContact) {
+    alert(`איש קשר בשם "${inputName}" כבר קיים.`);
+    return; // Stop the function if a duplicate is found
+  }
   const contactIndex = contacts.findIndex(c => c.number === number); // מציאת אינדקס איש הקשר לפי מספר הטלפון
   if (contactIndex !== -1) {
     contacts[contactIndex] = {
@@ -257,26 +262,22 @@ function deleteContact(number) {
 document.addEventListener('DOMContentLoaded', updateContactCount);
 
 // פונקציה לעדכון ממשק המשתמש עם רשימת אנשי הקשר הנוכחית
-// פונקציה לעדכון ממשק המשתמש עם רשימת אנשי הקשר הנוכחית
 function updateUI() {
   sortContactsAsc(); // Sort contacts before updating UI
 
   const list = document.getElementById('contacts-list');
-  const noContactsMessage = document.getElementById('no-contacts-message');
-  
-  list.innerHTML = ''; // Clear existing contacts
-
+  const noContactMessage = document.getElementById('no-contacts-message');
+  list.innerHTML = '';
   if (contacts.length === 0) {
-    noContactsMessage.style.display = 'block'; // Show no contacts message
+    noContactMessage.style.display = 'block';
   } else {
-    noContactsMessage.style.display = 'none'; // Hide no contacts message
+    noContactMessage.style.display = 'none';
     contacts.forEach(contact => addContact(contact));
   }
 
   // Update the contact count after updating the UI
   updateContactCount();
 }
-
 // פונקציה להוספת איש קשר חדש
 function addNewContact() {
   const content = `
@@ -348,6 +349,7 @@ function saveNewContact() {
   // Re-sort the contacts and then add the new contact at the top of the list
   sortContactsAsc();
   addContact(newContact, true);
+  updateUI();
 
   closeDialog(); // Close the dialog
 }
