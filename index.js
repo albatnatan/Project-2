@@ -103,7 +103,6 @@ function addContact(contact, prepend = false) {
   updateContactCount();
 }
 // פונקציה לאכלוס ראשוני של רשימת אנשי הקשר
-
 function populateContacts() {
   sortContactsAsc(); // Ensure contacts are sorted before displaying
 
